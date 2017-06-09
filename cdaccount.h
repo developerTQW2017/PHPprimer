@@ -1,18 +1,17 @@
 #ifndef CDACCOUNT_H
 #define CDACCOUNT_H
-
+#include <bankaccount.h>
 
 class CDAccount:public BankAccount
 {
-    double interest_rate;
 public:
-    CDAccount(string n,double b,double r):BankAccount(n,b)
-    {
-        interest_rate = r;
-     }
-    void deposit(double amount);
-    virtual int withdraw(double amount);
+    CDAccount(string name,double balance,double interest_rate,bool tiqian);
+    int withdraw(double amount);
+    double getInterest();
+    bool getTiqian();
+private:
+    double interest_rate;
+    bool tiqian;
 };
-
 
 #endif // CDACCOUNT_H

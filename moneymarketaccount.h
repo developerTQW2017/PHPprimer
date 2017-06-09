@@ -1,24 +1,15 @@
 #ifndef MONEYMARKETACCOUNT_H
 #define MONEYMARKETACCOUNT_H
-
-#include <iostream>
-using namespace std;
+#include <bankaccount.h>
 
 class MoneyMarketAccount:public BankAccount
 {
 public:
-    int time;
-    double handcharge;
-MoneyMarketAccount(string n,double b):BankAccount(n,b)
-{
-    double handcharge = h;
-    time = 0;
-}
-virtual int withdraw(double amount);
+    MoneyMarketAccount(string name,double balance,int times);
+    int withdraw(double amount);
+    int getTimes();
+private:
+    int times;
 };
-
-
-
-
 
 #endif // MONEYMARKETACCOUNT_H

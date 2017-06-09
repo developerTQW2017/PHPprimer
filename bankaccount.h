@@ -1,20 +1,20 @@
 #ifndef BANKACCOUNT_H
 #define BANKACCOUNT_H
-#include<string>
+#include <iostream>
 using namespace std;
+
 class BankAccount
 {
-protected:
-    string name;
-    double banlance;
 public:
-    BankAccount(string n="",double b=0.0);
-    void deposit(double amount);
-    virtual int withdraw(double amount);
-    string getname();
-    double getbanlance();
+    BankAccount(string name,double balance);
+    void deposit(double amount);    //存款
+    virtual int withdraw(double amount);   //取款
+    string getName();     //获取用户名
+    double getBalance();      //获取操作金额
+protected:
+    string name;    //账户所有人姓名
+    double balance;    //账户余额
+
 };
-
-
 
 #endif // BANKACCOUNT_H

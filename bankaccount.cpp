@@ -1,63 +1,31 @@
-#include <string>
-#include <iostream>
-
 #include "bankaccount.h"
 
-using namespace std;
-
-BankAccount::BankAccount(string n,double b)
+BankAccount::BankAccount(string name,double balance)
 {
-    name = n;
-    banlance = b;
+    this->name=name;
+    this->balance=balance;
 }
-
-string BankAccount::getname()
+BankAccount::withdraw(double amount)
 {
-    return name;
-}
+    if(amount < 0|| this->balance-amount<0)
+    {
+        return 1;
+    }
+    this->balance=this->balance-amount;
+    cout<<"��ǰjia���"<<this->balance<<endl;
 
-double BankAccount::getbanlance()
-{
-    return banlance;
+   return 0;
 }
-
 void BankAccount::deposit(double amount)
 {
-    cout<<"请输入存款金额:"<<endl;
-    cin>>amount;
-    if(amount<0)
-    {
-        cout<<"您输入的存款金额错误!"<<endl;
-    }
-    else
-    {
-        banlance+=amount; 
-    }
+    this->balance+=amount;
+    cout<<"��ǰ"<<this->name<<"���"<<this->balance<<endl;
 }
-
-int BankAccount::withdraw(double amount)
+string BankAccount::getName()
 {
-    cout<<"请输入取款金额:"<<endl;
-    cin>>amount;
-    if(amount<=banlance)
-    {
-        if(amount<0)
-        {
-            cout<<"您输入的取款金额错误!"<<endl;
-            return 0;
-        }
-        else
-        {
-            cout<<"允许取款!"<<endl;
-            banlance-=amount;
-            return 1;
-        }
-    }
-    else
-    {
-        cout<<"余额不足，不允许取款!"<<endl;
-        return 0;
-    }
-
-
+    return this->name;
+}
+double BankAccount::getBalance()
+{
+    return this->balance;
 }

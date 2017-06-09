@@ -1,33 +1,36 @@
-
-#include <iostream>
-
 #include "moneymarketaccount.h"
-
-
-
-int MoneyMarketAccount::withdraw(double amount)
+#include <bankaccount.h>
+MoneyMarketAccount::MoneyMarketAccount(string name,double balance,int times):BankAccount(name,balance)
 {
-    cout<<"请输入取款金额:"<<endl;
-    cin>>amount;
-    if(amount<=banlance)
+this->times=times;
+}
+MoneyMarketAccount::withdraw(double amount)
+{
+    if(amount < 0|| this->balance-amount<0)
     {
-        if(t<=2)
-        {   
-        banlance-=amount;
-        t++;
-        }
-        else
-        {
-          handcharge=amount*1.5;
-          banlance-=(amount+h);
-          cout<<handcharge<<"手续费合计为:"<<endl;
-        }
-        cout<<"允许取款!"<<end;
         return 1;
     }
-    else
+    if(this->times>=2)
     {
-       cout<<"余额不足，不允许取款!"<<endl;
-       return 0;
+        if(this->balance-amount-1.5<0)
+        {
+            return 1;
+        }else{
+
+            this->balance=this->balance-amount-1.5;
+            cout<<"��ǰ"<<this->name<<"���"<<this->balance<<endl;
+            this->times++;
+        return 0;
+        }
+
+    }else{
+        this->balance=this->balance-amount;
+        cout<<"��ǰ"<<this->name<<"���"<<this->balance<<endl;
+        this->times++;
+        return 0;
     }
+}
+MoneyMarketAccount::getTimes()
+{
+    return this->times;
 }

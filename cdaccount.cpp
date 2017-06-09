@@ -1,34 +1,32 @@
-
-#include <iostream>
-
 #include "cdaccount.h"
 
-
-double CDAccount::deposit(double amount)
+CDAccount::CDAccount(string name,double balance,double interest_rate=0.035,bool tiqian=1):BankAccount(name,balance)
 {
-    cout<<"请输入定期存款金额:"<<endl;
-    cin>>amount;
-    if(amount<0)
-    {
-        cout<<"您输入的定期存款金额错误！"<<endl;
-    }
-    else
-    {
-        banlance+=amount;
-    }
+    this->interest_rate=interest_rate;
+    this->tiqian=tiqian;
 }
-int CDAccount::withdraw(double amount)
+CDAccount::withdraw(double amount)
 {
-    cout<<"请输入取款金额:"<<endl;
-    cin>>amount;
-   if(amount<=banlance)
+    if(amount < 0|| this->balance-amount<0)
     {
-
-
-
-   else
-   {
-       cout<<"余额不足，不允许取款!"<<endl;
-   }
+        return 1;
     }
+    if(tiqian)
+    {
+        this->balance+=this->balance*this->interest_rate*0.75;
+        cout<<"��ǰ"<<this->name<<"���"<<this->balance<<endl;
+    }else{
+        this->balance+=this->balance*this->interest_rate;
+        cout<<"��ǰ"<<this->name<<"���"<<this->balance<<endl;
+
+    }
+    return 0;
+}
+double CDAccount::getInterest()
+{
+    return this->interest_rate;
+}
+bool CDAccount::getTiqian()
+{
+    return this->tiqian;
 }
